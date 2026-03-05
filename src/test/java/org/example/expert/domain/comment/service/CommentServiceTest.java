@@ -1,6 +1,7 @@
 package org.example.expert.domain.comment.service;
 
 import org.example.expert.domain.comment.dto.request.CommentSaveRequest;
+import org.example.expert.domain.comment.dto.response.CommentResponse;
 import org.example.expert.domain.comment.dto.response.CommentSaveResponse;
 import org.example.expert.domain.comment.entity.Comment;
 import org.example.expert.domain.comment.repository.CommentRepository;
@@ -15,7 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,5 +72,24 @@ class CommentServiceTest {
 
         // then
         assertNotNull(result);
+    }
+
+    @Test
+    public void comment_목록_조회가_정상적으로_완료된다() {
+        // given
+        User user = new User("a@a.com", "pw", UserRole.USER);
+        ReflectionTestUtils.setField(user, "id", 1L);
+        Todo todo = new Todo("title", "title", "contents", user);
+        Comment comment = new Comment("contents", user, todo);
+        ReflectionTestUtils.setField(comment, "id", 1L);
+
+        given(commentRepository.findByTodoIdWithUser(anyLong())).willReturn(List.of(comment));
+
+        // when
+        List<CommentResponse> result = commentService.getComments(1L);
+
+        // then
+        assertEquals(1, result.size());
+        assertEquals("contents", result.get(0).getContents());
     }
 }

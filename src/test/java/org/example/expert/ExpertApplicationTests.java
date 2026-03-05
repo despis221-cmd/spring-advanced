@@ -10,4 +10,9 @@ class ExpertApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void main_메서드가_정상적으로_실행된다() {
+        ExpertApplication.main(new String[]{});
+    }
+
 }
