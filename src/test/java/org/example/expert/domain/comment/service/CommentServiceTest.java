@@ -62,7 +62,7 @@ class CommentServiceTest {
         CommentSaveRequest request = new CommentSaveRequest("contents");
         AuthUser authUser = new AuthUser(1L, "email", UserRole.USER);
         User user = User.fromAuthUser(authUser);
-        Todo todo = new Todo("title", "title", "contents", user);
+        Todo todo = new Todo("title", "contents", "맑음", user);
         Comment comment = new Comment(request.getContents(), user, todo);
 
         given(todoRepository.findById(anyLong())).willReturn(Optional.of(todo));
@@ -80,7 +80,7 @@ class CommentServiceTest {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L); // id 필드를 직접 주입
-        Todo todo = new Todo("title", "title", "contents", user);
+        Todo todo = new Todo("title", "contents", "맑음", user);
         Comment comment = new Comment("contents", user, todo);
         ReflectionTestUtils.setField(comment, "id", 1L);
 
