@@ -1,4 +1,4 @@
-package org.example.expert.domain.user.response;
+package org.example.expert.domain.user.response.dto;
 
 import org.example.expert.domain.user.dto.response.UserSaveResponse;
 import org.junit.jupiter.api.Test;
