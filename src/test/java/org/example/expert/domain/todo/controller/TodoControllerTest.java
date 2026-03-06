@@ -47,7 +47,12 @@ class TodoControllerTest {
         // then
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
+        assertEquals(1L, result.getBody().getId());
         assertEquals("title", result.getBody().getTitle());
+        assertEquals("contents", result.getBody().getContents());
+        assertEquals("맑음", result.getBody().getWeather());
+        assertEquals(1L, result.getBody().getUser().getId());
+        assertEquals("a@a.com", result.getBody().getUser().getEmail());
     }
 
     @Test
@@ -66,6 +71,12 @@ class TodoControllerTest {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertEquals(1, result.getBody().getTotalElements());
+        assertEquals(1L, result.getBody().getContent().get(0).getId());
+        assertEquals("title", result.getBody().getContent().get(0).getTitle());
+        assertEquals("contents", result.getBody().getContent().get(0).getContents());
+        assertEquals("맑음", result.getBody().getContent().get(0).getWeather());
+        assertEquals(1L, result.getBody().getContent().get(0).getUser().getId());
+        assertEquals("a@a.com", result.getBody().getContent().get(0).getUser().getEmail());
     }
 
     @Test
@@ -81,6 +92,11 @@ class TodoControllerTest {
         // then
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
+        assertEquals(1L, result.getBody().getId());
         assertEquals("title", result.getBody().getTitle());
+        assertEquals("contents", result.getBody().getContents());
+        assertEquals("맑음", result.getBody().getWeather());
+        assertEquals(1L, result.getBody().getUser().getId());
+        assertEquals("a@a.com", result.getBody().getUser().getEmail());
     }
 }

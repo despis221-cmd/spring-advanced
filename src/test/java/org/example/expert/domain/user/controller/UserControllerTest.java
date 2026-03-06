@@ -39,6 +39,7 @@ class UserControllerTest {
         // then
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
+        assertEquals(1L, result.getBody().getId());
         assertEquals("a@a.com", result.getBody().getEmail());
     }
 

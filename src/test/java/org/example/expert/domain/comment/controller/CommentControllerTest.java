@@ -47,7 +47,10 @@ class CommentControllerTest {
         // then
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
+        assertEquals(1L, result.getBody().getId());
         assertEquals("contents", result.getBody().getContents());
+        assertEquals(1L, result.getBody().getUser().getId());
+        assertEquals("a@a.com", result.getBody().getUser().getEmail());
     }
 
     @Test
@@ -63,5 +66,9 @@ class CommentControllerTest {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertEquals(1, result.getBody().size());
+        assertEquals(1L, result.getBody().get(0).getId());
+        assertEquals("contents", result.getBody().get(0).getContents());
+        assertEquals(1L, result.getBody().get(0).getUser().getId());
+        assertEquals("a@a.com", result.getBody().get(0).getUser().getEmail());
     }
 }

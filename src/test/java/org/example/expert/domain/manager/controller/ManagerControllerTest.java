@@ -54,6 +54,8 @@ class ManagerControllerTest {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertEquals(1L, result.getBody().getId());
+        assertEquals(2L, result.getBody().getUser().getId());
+        assertEquals("b@b.com", result.getBody().getUser().getEmail());
     }
 
     @Test
@@ -69,6 +71,9 @@ class ManagerControllerTest {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertEquals(1, result.getBody().size());
+        assertEquals(1L, result.getBody().get(0).getId());
+        assertEquals(2L, result.getBody().get(0).getUser().getId());
+        assertEquals("b@b.com", result.getBody().get(0).getUser().getEmail());
     }
 
     @Test
