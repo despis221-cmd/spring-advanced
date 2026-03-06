@@ -64,6 +64,7 @@ class AuthServiceTest {
 
         // then
         assertNotNull(response);
+        assertEquals("bearerToken", response.getBearerToken());
     }
 
     @Test
@@ -108,5 +109,6 @@ class AuthServiceTest {
 
         // then
         assertNotNull(response);
+        assertEquals("bearerToken", response.getBearerToken());
     }
 }
