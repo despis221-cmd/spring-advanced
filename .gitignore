@@ -39,3 +39,4 @@ out/
 ### properties ###
 ### *.properties ###
 .DS_Store
+application-local.properties
