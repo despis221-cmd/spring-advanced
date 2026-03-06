@@ -14,6 +14,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -74,7 +75,7 @@ class AdminApiLoggingAopTest {
         Object result = aop.logAdminApi(joinPoint);
 
         // then
-        assertEquals(null, result);
+        assertNull(result);
         verify(joinPoint).proceed();
     }
 }
