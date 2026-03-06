@@ -27,9 +27,8 @@ class JwtFilterTest {
     private FilterChain filterChain;
     @Mock
     private Claims claims;
-    @InjectMocks
-    private JwtFilter jwtFilter;
 
+    private JwtFilter jwtFilter;
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;
 
