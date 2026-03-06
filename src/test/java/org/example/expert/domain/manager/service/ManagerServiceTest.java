@@ -42,7 +42,7 @@ class ManagerServiceTest {
 
     // getManagers
     @Test
-    public void manager_목록_조회_시_Todo가_없다면_InvalidRequestException_에러를_던진다() { // 실제로 던지는 예외는 NullPointerException이 아닌 InvalidRequestException이므로 메서드명 수정
+    public void 담당자_목록_조회_시_투두가_없다면_InvalidRequestException_예외가_발생한다() { // 실제로 던지는 예외는 NullPointerException이 아닌 InvalidRequestException이므로 메서드명 수정
         // given
         long todoId = 1L;
         given(todoRepository.findById(todoId)).willReturn(Optional.empty());
@@ -53,7 +53,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    public void manager_목록_조회에_성공한다() {
+    public void 담당자_목록_조회가_정상적으로_완료된다() {
         // given
         long todoId = 1L;
         User user = new User("user1@example.com", "password", UserRole.USER);
@@ -78,7 +78,7 @@ class ManagerServiceTest {
     // saveManager
 
     @Test
-    void todo의_user가_null인_경우_예외가_발생한다() {
+    void 투두의_유저가_없으면_예외가_발생한다() {
         // given
         AuthUser authUser = new AuthUser(1L, "a@a.com", UserRole.USER);
         long todoId = 1L;
@@ -100,7 +100,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void saveManager_시_Todo가_없다면_InvalidRequestException_에러를_던진다() {
+    void 담당자_저장_시_투두가_없으면_InvalidRequestException_예외가_발생한다() {
         // given
         AuthUser authUser = new AuthUser(1L, "a@a.com", UserRole.USER);
         given(todoRepository.findById(anyLong())).willReturn(Optional.empty());
@@ -162,7 +162,7 @@ class ManagerServiceTest {
     }
 
     @Test // 테스트코드 샘플
-    void todo가_정상적으로_등록된다() {
+    void 투두가_정상적으로_등록된다() {
         // given
         AuthUser authUser = new AuthUser(1L, "a@a.com", UserRole.USER);
         User user = User.fromAuthUser(authUser);  // 일정을 만든 유저
@@ -192,7 +192,7 @@ class ManagerServiceTest {
     // deleteManager
 
     @Test
-    void deleteManager_시_User가_없다면_InvalidRequestException_에러를_던진다() {
+    void 담당자_삭제_시_유저가_없으면_InvalidRequestException_예외가_발생한다() {
         // given
         given(userRepository.findById(anyLong())).willReturn(Optional.empty());
 
@@ -203,7 +203,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void deleteManager_시_Todo가_없다면_InvalidRequestException_에러를_던진다() {
+    void 담당자_삭제_시_투두가_없으면_InvalidRequestException_예외가_발생한다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L);
@@ -218,7 +218,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void deleteManager_시_투두_작성자가_null이면_예외가_발생한다() {
+    void 담당자_삭제_시_투두_작성자가_없으면_예외가_발생한다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L);
@@ -235,7 +235,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void deleteManager_시_투두_작성자와_다른_유저면_예외가_발생한다() {
+    void 담당자_삭제_시_투두_작성자와_다른_유저면_예외가_발생한다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L);
@@ -253,7 +253,7 @@ class ManagerServiceTest {
     }
 
     @Test
-    void deleteManager_시_Manager가_없다면_InvalidRequestException_에러를_던진다() {
+    void 담당자_삭제_시_담당자가_없으면_InvalidRequestException_예외가_발생한다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L);

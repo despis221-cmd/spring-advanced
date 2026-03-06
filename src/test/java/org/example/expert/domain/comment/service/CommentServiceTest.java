@@ -37,7 +37,7 @@ class CommentServiceTest {
     private CommentService commentService;
 
     @Test
-    public void comment_등록_중_할일을_찾지_못해_에러가_발생한다() {
+    public void 댓글_등록_중_할일을_찾지_못해_예외가_발생한다() {
         // given
         long todoId = 1;
         CommentSaveRequest request = new CommentSaveRequest("contents");
@@ -56,7 +56,7 @@ class CommentServiceTest {
     }
 
     @Test
-    public void comment를_정상적으로_등록한다() {
+    public void 댓글_등록이_정상적으로_완료된다() {
         // given
         long todoId = 1;
         CommentSaveRequest request = new CommentSaveRequest("contents");
@@ -76,7 +76,7 @@ class CommentServiceTest {
     }
 
     @Test
-    public void comment_목록_조회가_정상적으로_완료된다() {
+    public void 댓글_목록_조회가_정상적으로_완료된다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
         ReflectionTestUtils.setField(user, "id", 1L); // id 필드를 직접 주입
