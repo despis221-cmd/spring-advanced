@@ -26,6 +26,8 @@ public class AuthService {
     @Transactional
     public SignupResponse signup(SignupRequest signupRequest) {
 
+        // 이메일 중복 체크를 encode() 이전으로 이동
+        // 중복 이메일이면 즉시 예외를 던져 이후 로직을 실행하지 않음
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
             throw new InvalidRequestException("이미 존재하는 이메일입니다.");
         }

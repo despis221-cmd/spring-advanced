@@ -19,11 +19,13 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AdminApiLoggingAop {
 
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper; // JSON 형식
 
+    // 두 컨트롤러가 어드민 전용 API를 담당
     @Around("execution(* org.example.expert.domain.comment.controller.CommentAdminController.*(..)) || " +
             "execution(* org.example.expert.domain.user.controller.UserAdminController.*(..))")
     public Object logAdminApi(ProceedingJoinPoint joinPoint) throws Throwable {
+
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
         Long userId = (Long) request.getAttribute("userId");
@@ -32,7 +34,7 @@ public class AdminApiLoggingAop {
         String requestBody = objectMapper.writeValueAsString(joinPoint.getArgs());
         log.info("ADMIN API 요청 - 사용자 ID: {}, 요청 시각: {}, URL: {}, 요청 본문: {}", userId, LocalDateTime.now(), requestUrl, requestBody);
 
-        Object result = joinPoint.proceed();
+        Object result = joinPoint.proceed(); // 실제 컨트롤러 메서드 실행
 
         String responseBody = objectMapper.writeValueAsString(result);
         log.info("ADMIN API 응답 - 응답 본문: {}", responseBody);

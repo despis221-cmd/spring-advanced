@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-@Slf4j
+@Slf4j // Logger 클래스
 @Component
 @RequiredArgsConstructor
 public class AdminAccessInterceptor implements HandlerInterceptor {

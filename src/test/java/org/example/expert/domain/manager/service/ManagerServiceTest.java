@@ -42,14 +42,14 @@ class ManagerServiceTest {
 
     // getManagers
     @Test
-    public void manager_목록_조회_시_Todo가_없다면_InvalidRequestException_에러를_던진다() {
+    public void manager_목록_조회_시_Todo가_없다면_InvalidRequestException_에러를_던진다() { // 실제로 던지는 예외는 NullPointerException이 아닌 InvalidRequestException이므로 메서드명 수정
         // given
         long todoId = 1L;
         given(todoRepository.findById(todoId)).willReturn(Optional.empty());
 
         // when & then
         InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> managerService.getManagers(todoId));
-        assertEquals("Todo not found", exception.getMessage());
+        assertEquals("Todo not found", exception.getMessage()); // 서비스 로직의 메시지인 "Todo not found"로 수정
     }
 
     @Test

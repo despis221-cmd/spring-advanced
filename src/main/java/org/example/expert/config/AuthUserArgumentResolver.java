@@ -13,6 +13,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+// WebMvcConfig에서 ArgumentResolver를 등록할 때 Spring Bean으로 등록되어야 의존성 주입 가능
+// @Component없으면 WebMvcConfig에서 new 키워드로 직접 생성해야 함
 @Component
 public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
 

@@ -29,6 +29,7 @@ class WeatherClientTest {
 
     private WeatherClient weatherClient;
 
+    // 실제 HTTP 요청 없이 RestTemplate 동작 제어
     @BeforeEach
     void setUp() {
         weatherClient = new WeatherClient(new RestTemplateBuilder());
@@ -36,7 +37,7 @@ class WeatherClientTest {
     }
 
     @Test
-    void 오늘_날씨를_정상적으로_반환한다() {
+    void 오늘_날씨를_정상적으로_반환한다() { // 오늘 날짜를 동적으로 생성
         // given
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd"));
         WeatherDto[] weatherArray = {new WeatherDto(today, "맑음")};
@@ -88,7 +89,7 @@ class WeatherClientTest {
     }
 
     @Test
-    void API_응답_상태코드가_200이_아니면_예외가_발생한다() {
+    void API_응답_상태코드가_200이_아니면_예외가_발생한다() { // 500 상태 코드 반환해 HTTP 에러 응답 처리 로직 검증
         // given
         WeatherDto[] weatherArray = {new WeatherDto("00-00", "눈")};
         given(restTemplate.getForEntity(any(), eq(WeatherDto[].class)))

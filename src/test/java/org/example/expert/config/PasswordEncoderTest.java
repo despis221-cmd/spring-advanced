@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PasswordEncoderTest {
 
+    // Spring 컨텍스트 없이 PasswordEncoder를 직접 생성
+    // Mock이나 @ExtendWith 불필요
     private final PasswordEncoder passwordEncoder = new PasswordEncoder();
 
     @Test
@@ -17,6 +19,7 @@ class PasswordEncoderTest {
         String encodedPassword = passwordEncoder.encode(rawPassword);
 
         // when
+        // 파라미터 순서 오류 - 순서가 바뀌면 검증 실패로 항상 false 반환
         boolean matches = passwordEncoder.matches(rawPassword, encodedPassword);
 
         // then

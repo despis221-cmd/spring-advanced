@@ -38,7 +38,7 @@ class CommentControllerTest {
         CommentSaveRequest request = new CommentSaveRequest("contents");
         CommentSaveResponse response = new CommentSaveResponse(1L, "contents", new UserResponse(1L, "a@a.com"));
 
-        given(commentService.saveComment(any(AuthUser.class), anyLong(), any(CommentSaveRequest.class)))
+        given(commentService.saveComment(any(AuthUser.class), anyLong(), any(CommentSaveRequest.class))) // 객체 동일성에 의존하지 않도록 설정
                 .willReturn(response);
 
         // when

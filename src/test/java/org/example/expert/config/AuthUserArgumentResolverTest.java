@@ -23,6 +23,7 @@ class AuthUserArgumentResolverTest {
     private AuthUserArgumentResolver resolver;
 
     // 테스트용 더미 컨트롤러
+    // 각 메서드가 서로 다른 어노테이션, 타입 조합 - 다양한 분기 커버
     static class TestController {
         public void withAuthAndAuthUser(@Auth AuthUser authUser) {}
         public void withAuthUserOnly(AuthUser authUser) {}

@@ -56,6 +56,7 @@ class AdminAccessInterceptorTest {
     @Test
     void userRole이_null이면_preHandle이_false를_반환하고_403을_응답한다() throws Exception {
         // given: userRole 속성 없음
+        // JwtFilter를 거치지 않은 요청이나 attribute 누락 케이스를 방어하기 위한 테스트
 
         // when
         boolean result = interceptor.preHandle(request, response, new Object());

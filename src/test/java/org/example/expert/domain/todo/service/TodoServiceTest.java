@@ -67,7 +67,7 @@ class TodoServiceTest {
         Todo todo = new Todo("title", "contents", "맑음", user);
         ReflectionTestUtils.setField(todo, "id", 1L);
 
-        Page<Todo> todoPage = new PageImpl<>(List.of(todo), PageRequest.of(0, 10), 1);
+        Page<Todo> todoPage = new PageImpl<>(List.of(todo), PageRequest.of(0, 10), 1); // 페이지네이션 결과 시뮬레이션
         given(todoRepository.findAllByOrderByModifiedAtDesc(any())).willReturn(todoPage);
 
         // when

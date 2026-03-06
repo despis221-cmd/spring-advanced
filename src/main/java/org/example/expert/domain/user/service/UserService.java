@@ -29,6 +29,7 @@ public class UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidRequestException("User not found"));
 
+        // 기존 비밀번호 검증을 새 비밀번호 형식 검증보다 먼저 수행
         if (!passwordEncoder.matches(userChangePasswordRequest.getOldPassword(), user.getPassword())) {
             throw new InvalidRequestException("잘못된 비밀번호입니다.");
         }

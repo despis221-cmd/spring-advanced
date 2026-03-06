@@ -20,7 +20,7 @@ class JwtUtilTest {
 
     @BeforeEach
     void setUp() {
-        // Base64로 인코딩된 256비트 secret key
+        // 실제 운영 키 노출 방지
         ReflectionTestUtils.setField(jwtUtil, "secretKey",
                 "dGVzdFNlY3JldEtleUZvckp3dFRlc3RpbmdQdXJwb3Nl");
         jwtUtil.init();

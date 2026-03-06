@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TodoTest {
 
+    // 엔티티는 Spring 컨텍스트나 Mock 없이 테스트 가능
+    // @ExtendWith 없이 @Test만 사용해 비즈니스 로직을 검증
     @Test
     void 투두_내용이_정상적으로_수정된다() {
         // given

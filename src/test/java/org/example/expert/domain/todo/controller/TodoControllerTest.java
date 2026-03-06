@@ -54,6 +54,7 @@ class TodoControllerTest {
     void 투두_목록_조회가_정상적으로_완료된다() {
         // given
         TodoResponse todoResponse = new TodoResponse(1L, "title", "contents", "맑음", new UserResponse(1L, "a@a.com"), null, null);
+        // 임의값 사용 시 테스트 불안정해지므로 null로 설정
         Page<TodoResponse> page = new PageImpl<>(List.of(todoResponse));
 
         given(todoService.getTodos(anyInt(), anyInt())).willReturn(page);

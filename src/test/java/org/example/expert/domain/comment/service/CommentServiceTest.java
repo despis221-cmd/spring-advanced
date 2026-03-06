@@ -46,6 +46,7 @@ class CommentServiceTest {
         given(todoRepository.findById(anyLong())).willReturn(Optional.empty());
 
         // when
+        // InvalidRequestException으로 변경해 실제 동작과 일치하도록 수정
         InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> {
             commentService.saveComment(authUser, todoId, request);
         });
@@ -65,7 +66,7 @@ class CommentServiceTest {
         Comment comment = new Comment(request.getContents(), user, todo);
 
         given(todoRepository.findById(anyLong())).willReturn(Optional.of(todo));
-        given(commentRepository.save(any())).willReturn(comment);
+        given(commentRepository.save(any())).willReturn(comment); // 실제 DB 없이도 동작
 
         // when
         CommentSaveResponse result = commentService.saveComment(authUser, todoId, request);
@@ -78,7 +79,7 @@ class CommentServiceTest {
     public void comment_목록_조회가_정상적으로_완료된다() {
         // given
         User user = new User("a@a.com", "pw", UserRole.USER);
-        ReflectionTestUtils.setField(user, "id", 1L);
+        ReflectionTestUtils.setField(user, "id", 1L); // id 필드를 직접 주입
         Todo todo = new Todo("title", "title", "contents", user);
         Comment comment = new Comment("contents", user, todo);
         ReflectionTestUtils.setField(comment, "id", 1L);

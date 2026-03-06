@@ -35,6 +35,7 @@ class AdminApiLoggingAopTest {
         request.setRequestURI("/admin/test");
     }
 
+    // 테스트 후 RequestContextHolder 초기화해 다른 테스트에 영향 주지 않도록 정리
     @AfterEach
     void tearDown() {
         RequestContextHolder.resetRequestAttributes();
@@ -66,7 +67,7 @@ class AdminApiLoggingAopTest {
 
         given(joinPoint.getArgs()).willReturn(new Object[]{});
         given(objectMapper.writeValueAsString(joinPoint.getArgs())).willReturn("[]");
-        given(joinPoint.proceed()).willReturn(null);
+        given(joinPoint.proceed()).willReturn(null); // 응답이 null인 경우에도 로깅이 정상 동작하는지 확인
         given(objectMapper.writeValueAsString(null)).willReturn("null");
 
         // when
